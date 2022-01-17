@@ -1,0 +1,70 @@
+.tree {
+  background-color: #efefef;
+  height: 100%;
+  padding: 10px;
+  font-family: monospace;
+}
+
+div {
+  counter-reset: chapter;
+}
+
+/* with TreeNode */
+.indent {
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.tree>.indent {
+  counter-increment: section;
+}
+
+.tree >.indent >.indent {
+  counter-increment: subsection;
+}
+
+.tree >.indent >.indent >.indent{
+  counter-increment: lastsection;
+}
+
+.tree::before {
+  content: counter(chapter) ".";
+  counter-increment: chapter;
+  position: absolute;
+  /* left: 30px; */
+  left: 0px;
+}
+
+.tree> .indent::before {
+  content: counter(chapter) "." counter(section) " ";
+  counter-increment: chapter;
+  position: absolute;
+  /* left: 30px; */
+  left: -35px;
+}
+
+.tree >.indent >.indent::before {
+  content: counter(chapter) "." counter(section) "." counter(subsection) " " ;
+  counter-increment: chapter;  
+  position: absolute;
+  /* left: 30px; */
+  left: -55px;
+}
+
+.tree >.indent >.indent >.indent::before {
+  content: counter(chapter) "." counter(section) "." counter(subsection) "." counter(lastsection) " " ;
+  counter-increment: chapter;  
+  position: absolute;
+  left: -75px;
+}
+
+.indent >span {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+input {
+  /* margin-left: 40px; */
+}
