@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TreeNode = ({ node, children, showInput, father, addChildren, canDelete, deleteChildren }) => {
+const TreeNode = ({ node, children, father, addChildren, canDelete, deleteChildren, addInput }) => {
   const [text, setText] = useState('')
 
   const handleText = (event) => {
@@ -12,8 +12,8 @@ const TreeNode = ({ node, children, showInput, father, addChildren, canDelete, d
     const keycode = event.keyCode;
     const code = event.code;
 
-    if (keycode === '13' || code === 'Enter') {
-      addChildren({ father, nodeToFind: text })
+    if (text !== '' && (keycode === '13' || code === 'Enter')) {
+      addChildren({ father: node, nodeToFind: text })
       setText('')
     }
   }
@@ -22,27 +22,34 @@ const TreeNode = ({ node, children, showInput, father, addChildren, canDelete, d
     deleteChildren({ father, nodeToFind: node })
   }
 
+  const handleAddInput = () => {
+    addInput({ father, nodeToFind: node })
+  }
+
+
   return (
     <>
       {node}
-      {canDelete &&
+      {canDelete && <div className="options">
         <span role="img" aria-label="cross" onClick={handleDelete}>❌</span>
+        {/* {!children && <span role="img" aria-label="cross" onClick={handleAddInput}>➕</span>} */}
+      </div>
       }
 
       {children &&
-        children.map((_node, index) => (
+        children.map((_node) => (
           <div key={_node.node} className="indent">
             <TreeNode
               {..._node}
-              showInput={children.length - 1 === index}
               father={node}
               addChildren={addChildren}
               canDelete={true}
               deleteChildren={deleteChildren}
+              addInput={addInput}
             />
           </div>
         ))}
-      {showInput && <input type="text" value={text} onChange={handleText} onKeyUp={handleKeyUp} />}
+      {children && <input type="text" value={text} onChange={handleText} onKeyUp={handleKeyUp} />}
     </>
   );
 };

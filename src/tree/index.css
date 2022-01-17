@@ -60,11 +60,16 @@ div {
   left: -75px;
 }
 
-.indent >span {
+.indent >.options {
   position: absolute;
   right: 0;
+}
+.options>span {
+  padding-right: 0;
+  margin-right: 5px;
   cursor: pointer;
 }
+
 input {
   /* margin-left: 40px; */
 }

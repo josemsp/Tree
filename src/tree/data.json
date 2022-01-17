@@ -1,27 +1,27 @@
 {
-    "node": "root",
-    "children": [
-      {
-        "node": "ant"
-      },
-      {
-        "node": "bear",
-        "children": [
-          {
-            "node": "cat"
-          },
-          {
-            "node": "dog",
-            "children": [
-              {
-                "node": "elephant"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "node": "frog"
-      }
-    ]
+  "node": "root",
+  "children": [
+    {
+      "node": "ant"
+    },
+    {
+      "node": "bear",
+      "children": [
+        {
+          "node": "cat"
+        },
+        {
+          "node": "dog",
+          "children": [
+            {
+              "node": "elephant"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "node": "frog"
+    }
+  ]
 }
